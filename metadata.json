@@ -1,0 +1,6 @@
+{
+  "name": "Pecahan Desimal dan Persen",
+  "description": "Petualangan belajar STEAM Matematika Fase C Kelas 5 SD bertema Toko Diskon Si Cermat: pecahan, desimal, persen, dan diskon.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

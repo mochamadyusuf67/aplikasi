@@ -1,0 +1,772 @@
+Buat aplikasi web belajar STEAM untuk anak SD sesuai spesifikasi JSON berikut. Ikuti semua bidangnya, terutama critical_rules di awal dan build_instructions di akhir.
+
+{
+  "meta": {
+    "schema_version": "1.2",
+    "generated_at": "2026-11-01",
+    "generator_name": "Generator Prompt Aplikasi STEAM SD",
+    "app_title": "Pecahan Desimal dan Persen",
+    "prompt_language": "id",
+    "app_language": "id",
+    "target_builder": "any_ai_app_builder",
+    "author_role": "guru"
+  },
+  "prompt_framework": {
+    "persona": "Kamu adalah pembuat aplikasi pendidikan yang berpengalaman untuk anak Sekolah Dasar. Kamu paham Kurikulum Merdeka, cara anak kelas 5 belajar, dan antarmuka yang mudah untuk anak.",
+    "konteks": "Pengguna aplikasi: siswa kelas 5 SD (fase C).\nMata pelajaran: Matematika. Materi: Hubungan pecahan, desimal, dan persen (pecahan, desimal, persen, diskon).\nTujuan pembelajaran: Siswa dapat mengubah pecahan, desimal, dan persen; Siswa dapat membandingkan nilai pecahan, desimal, dan persen; Siswa dapat menghitung persen sederhana pada diskon.\nMurid: mulai lancar membaca kalimat pendek; HP, Tablet; internet tersedia terbatas.\n4 pertemuan, masing-masing 70 menit.\nKeinginan guru: Saya ingin siswa menghubungkan pecahan, desimal, dan persen lewat belanja dan diskon. Aplikasi memiliki garis bilangan interaktif dan toko diskon di mana anak menghitung harga akhir. Gunakan harga dalam rupiah yang realistis. Hindari mendorong konsumsi berlebihan dan hindari iklan produk nyata. Sediakan tantangan berpikir yang naik bertahap, minta siswa menjelaskan alasan jawabannya, dan tutup tiap pertemuan dengan refleksi singkat tentang apa yang dipelajari.",
+    "tugas": "Buatkan satu aplikasi web belajar \"Pecahan Desimal dan Persen\" dengan bentuk: Petualangan misi dengan peta, bintang, dan lencana.\nIsi yang harus ada: halaman penjelasan bergambar, simulasi yang bisa disentuh, kuis.\nTema: Toko Diskon Si Cermat.\nIkuti seluruh isi JSON di bawah (komponen STEAM aktif, urutan belajar, isi pelajaran). Semua fitur harus berfungsi, tidak ada layar kosong.",
+    "format": "Satu aplikasi web lengkap yang bisa dijalankan; semua teks untuk siswa berbahasa Indonesia yang sederhana.\nSatu layar satu langkah, muat satu halaman tanpa scroll, huruf besar, tombol Lanjut dan Kembali besar, nyaman di HP.\nSemua gambar berupa aset 2D interaktif p5.js yang digambar di kode (tanpa foto atau berkas gambar).\nTanpa AI, tanpa server, tanpa database, tanpa akun.\nSetelah selesai, laporkan: apa yang dibuat, asumsi yang diambil, dan hal yang perlu saya periksa."
+  },
+  "app_blueprint": {
+    "form": "misi",
+    "description": "Petualangan misi dengan peta, bintang, dan lencana",
+    "features": [
+      "halaman penjelasan bergambar",
+      "simulasi yang bisa disentuh",
+      "kuis"
+    ],
+    "screen_flow": [
+      "Layar sapaan, lalu peta misi yang membuka misi satu per satu, tiap misi memberi bintang, dan lencana di akhir"
+    ],
+    "navigation": {
+      "next_button_label": "Lanjut",
+      "back_button_label": "Kembali",
+      "always_visible": true,
+      "show_progress": true
+    },
+    "text_policy": "Sedikit tulisan: maksimal dua kalimat pendek per layar, judul layar maksimal lima kata, dan setiap penjelasan didukung gambar dan suara.",
+    "look": "Cerah dan ceria: latar terang, warna-warni dari palet, bentuk membulat, tombol besar dan berwarna.",
+    "layout": {
+      "no_scroll": true,
+      "viewport": "Tinggi layar 100dvh, overflow hidden pada halaman; hormati area aman (safe-area) perangkat.",
+      "structure": [
+        "Atas: penunjuk langkah (titik atau bar) dan tombol suara",
+        "Tengah: satu gambar besar dan satu atau dua kalimat pendek, dipusatkan",
+        "Bawah: tombol Kembali dan Lanjut yang besar, selalu terlihat"
+      ],
+      "overflow_rule": "Jika isi tidak muat, kecilkan gambar secukupnya dengan tetap menjaga ukuran huruf minimum, atau pecah menjadi layar berikutnya. Jangan menambah scroll.",
+      "orientation": "Nyaman di HP tegak dan tablet mendatar; pada layar mendatar gambar di kiri dan teks di kanan.",
+      "test_viewports": [
+        "360x640",
+        "390x844",
+        "768x1024",
+        "1280x720"
+      ],
+      "verify": "Sebelum selesai, periksa tiap layar pada ukuran di test_viewports: tidak ada scroll, tidak ada teks terpotong, tombol terlihat penuh.",
+      "exception": "Halaman /galeri-aset (alat pemeriksa guru) boleh di-scroll."
+    },
+    "uses_mascot": false,
+    "easy_mode": false
+  },
+  "critical_rules": [
+    "Semua gambar adalah ilustrasi 2D yang lucu dan hidup, digambar sendiri oleh kamu lewat kode dengan p5.js (mode instance) dari bentuk dasar. Dilarang memakai foto, gambar 3D, file gambar unduhan, gambar stok, generator gambar AI, emoji, atau ikon pustaka sebagai ilustrasi.",
+    "Setiap aset di asset_list harus benar-benar dibuat dan dipakai di aplikasi, dan menampilkan konsep nyata dari materi (lihat must_depict). Tidak boleh ada kotak kosong atau aset yang hilang.",
+    "Aplikasi aman untuk anak SD dan tidak memakai database, akun, atau login.",
+    "Bila kanvas p5.js gagal, tampilkan cadangan sederhana dan pesan ramah; aplikasi tetap bisa dilanjutkan.",
+    "Setiap layar muat dalam satu halaman penuh tanpa scroll (tinggi 100dvh) di HP dan tablet. Bila isi lebih banyak, pecah menjadi layar berikutnya dengan tombol Lanjut, jangan di-scroll. Tulisan selalu besar dan rapi.",
+    "Tampilan cerah, ramah, dan mudah: maksimal dua kalimat pendek per layar, utamakan gambar, warna, dan suara daripada tulisan."
+  ],
+  "learning_context": {
+    "education_level": "SD",
+    "grade": 5,
+    "phase": "C",
+    "subject": "Matematika",
+    "topic": "Hubungan pecahan, desimal, dan persen",
+    "subtopics": [
+      "pecahan",
+      "desimal",
+      "persen",
+      "diskon"
+    ],
+    "learning_objectives": [
+      "Siswa dapat mengubah pecahan, desimal, dan persen",
+      "Siswa dapat membandingkan nilai pecahan, desimal, dan persen",
+      "Siswa dapat menghitung persen sederhana pada diskon"
+    ],
+    "prior_knowledge": "Siswa memahami pecahan senilai.",
+    "common_misconceptions": [
+      "0,5 lebih kecil dari 0,25",
+      "Persen selalu di bawah 100"
+    ],
+    "duration": {
+      "meetings": 4,
+      "minutes_per_meeting": 70,
+      "total_minutes": 280
+    },
+    "learning_mode": "individual_and_group",
+    "student_profile": {
+      "reading_level": "mulai lancar membaca kalimat pendek",
+      "attention_span_minutes": 10,
+      "devices": [
+        "HP",
+        "Tablet"
+      ],
+      "internet": "tersedia terbatas",
+      "interests": [
+        "belanja",
+        "diskon",
+        "permainan"
+      ]
+    },
+    "local_context": "Warga sekitar membeli di pasar dan toko dengan diskon tertentu.",
+    "teacher_description": "Saya ingin siswa menghubungkan pecahan, desimal, dan persen lewat belanja dan diskon. Aplikasi memiliki garis bilangan interaktif dan toko diskon di mana anak menghitung harga akhir. Gunakan harga dalam rupiah yang realistis. Hindari mendorong konsumsi berlebihan dan hindari iklan produk nyata. Sediakan tantangan berpikir yang naik bertahap, minta siswa menjelaskan alasan jawabannya, dan tutup tiap pertemuan dengan refleksi singkat tentang apa yang dipelajari.",
+    "must_include": [
+      "Garis bilangan interaktif",
+      "Toko diskon",
+      "Petunjuk bertahap"
+    ],
+    "must_avoid": [
+      "Iklan produk",
+      "Dorongan belanja berlebihan"
+    ]
+  },
+  "curriculum": {
+    "enabled": true,
+    "framework": "Kurikulum Merdeka",
+    "profile_framework": "Profil Pelajar Pancasila",
+    "alignment_note": "Setiap misi dalam aplikasi harus dapat ditelusuri ke minimal satu tujuan pembelajaran"
+  },
+  "steam_project": {
+    "theme": "Toko Diskon Si Cermat",
+    "driving_question": "Bagaimana menghitung potongan harga dengan cepat?",
+    "final_product": "Daftar belanja hemat dengan diskon",
+    "project_stages": [
+      {
+        "stage": 1,
+        "name": "Mengenal Masalah: Rahasia Angka di Pasar",
+        "meeting": 1
+      },
+      {
+        "stage": 2,
+        "name": "Menyelidiki dan Merancang: Rencana Belanja Bijak",
+        "meeting": 2
+      },
+      {
+        "stage": 3,
+        "name": "Membuat dan Menguji: Simulasi Toko dan Karya Poster",
+        "meeting": 3
+      },
+      {
+        "stage": 4,
+        "name": "Membagikan: Pameran Belanja Hemat",
+        "meeting": 4
+      }
+    ]
+  },
+  "steam_components": {
+    "science": {
+      "source": "skip"
+    },
+    "technology": {
+      "source": "manual",
+      "content": "Anak menggeser titik pada garis bilangan dan melihat tiga bentuk bilangan.",
+      "media": {
+        "mode": "integrated",
+        "app_role": "Kegiatan dilakukan langsung di dalam aplikasi."
+      },
+      "digital_tools_in_app": [
+        "garis bilangan",
+        "konversi"
+      ],
+      "child_activities": [
+        "Menggeser titik",
+        "Mengubah bentuk bilangan"
+      ]
+    },
+    "engineering": {
+      "source": "manual",
+      "content": "Anak merancang belanja hemat dengan anggaran.",
+      "media": {
+        "mode": "integrated",
+        "app_role": "Kegiatan dilakukan langsung di dalam aplikasi."
+      },
+      "design_cycle": [
+        "anggaran",
+        "diskon"
+      ],
+      "child_activities": [
+        "Memilih barang",
+        "Menghitung harga akhir"
+      ]
+    },
+    "art": {
+      "source": "manual",
+      "content": "Anak membuat poster diskon.",
+      "media": {
+        "mode": "separate",
+        "description": "Karton dan krayon",
+        "app_role": "Aplikasi hanya memandu, memberi tugas dan petunjuk, lalu meminta siswa merefleksikan atau mencentang hasil kerjanya. Kegiatan inti dikerjakan di luar aplikasi memakai media yang dijelaskan guru. Jangan membuat simulasi pengganti."
+      },
+      "art_forms": [
+        "poster",
+        "warna"
+      ],
+      "child_activities": [
+        "Menghias poster",
+        "Menulis pengumuman"
+      ]
+    },
+    "math": {
+      "source": "manual",
+      "content": "Anak mengubah dan membandingkan pecahan, desimal, persen dan menghitung diskon.",
+      "media": {
+        "mode": "integrated",
+        "app_role": "Kegiatan dilakukan langsung di dalam aplikasi."
+      },
+      "math_topics": [
+        "persen",
+        "desimal",
+        "diskon"
+      ],
+      "child_activities": [
+        "Mengubah 1/4 menjadi 25 persen",
+        "Menghitung diskon 20 persen"
+      ]
+    },
+    "integration_note": "Kelima komponen harus terasa sebagai satu cerita proyek, bukan lima kegiatan terpisah"
+  },
+  "content_scope": {
+    "depth": "lengkap",
+    "missions_per_meeting": 4,
+    "questions_per_mission": 4,
+    "hint_levels": 3,
+    "dialog_lines_per_mission": 6,
+    "required_features": [
+      "Peta perjalanan misi yang menunjukkan misi selesai dan berikutnya",
+      "Glosarium bergambar untuk istilah penting",
+      "Halaman fakta unik",
+      "Kuis akhir dengan skor ramah",
+      "Lencana dan koleksi hadiah",
+      "Tombol baca dengan suara (Web Speech API) di setiap teks siswa",
+      "Halaman ringkas untuk orang tua"
+    ],
+    "depth_rules": [
+      "Setiap misi adalah rangkaian layar yang bisa dimainkan penuh: dialog atau narasi singkat, langkah kegiatan, interaksi, soal, umpan balik, dan perayaan.",
+      "Tulis teks misi persis seperti di learning_flow.meetings[].missions; jangan meringkas atau mengganti isinya.",
+      "Setiap soal memiliki umpan balik untuk jawaban benar dan salah serta petunjuk bertahap; jawaban salah tidak mengurangi bintang.",
+      "Gunakan variasi interaksi (ketuk, geser, seret-lepas, pilih gambar, menggambar) dan animasi sederhana pada tiap misi.",
+      "Tidak boleh ada layar kosong, placeholder, atau tulisan \"segera hadir\"."
+    ]
+  },
+  "learning_flow": {
+    "structure": "misi_bertahap",
+    "meetings": [
+      {
+        "meeting": 1,
+        "title": "Rahasia Angka di Pasar",
+        "opening": "Siswa melihat cerita bergambar tentang warga yang bingung melihat tulisan potongan harga 1/2, 0,5, dan 50% di toko. Pertanyaan pemantik muncul di layar tentang bagaimana cara cepat mengetahui nilai potongan harga tersebut.",
+        "core_activities": [
+          "Misi Teknologi (7 menit): Menggeser titik pada garis bilangan interaktif untuk melihat perubahan bentuk pecahan, desimal, dan persen secara bersamaan.",
+          "Misi Matematika 1 (8 menit): Membandingkan nilai 0,5 dan 0,25 lewat visual petak seratus pada garis bilangan agar tidak tertipu banyak angka di belakang koma.",
+          "Misi Matematika 2 (8 menit): Menjawab kuis bertahap tentang pecahan senilai yang diubah ke persen, serta memilih alasan jawaban yang tepat."
+        ],
+        "closing": "Siswa memilih gambar ekspresi wajah maskot di layar dan memilih satu kalimat refleksi tentang hubungan pecahan, desimal, dan persen yang baru dipelajari."
+      },
+      {
+        "meeting": 2,
+        "title": "Rencana Belanja Bijak",
+        "opening": "Siswa menerima tantangan untuk membantu keluarga berbelanja kebutuhan pokok di pasar lokal dengan anggaran Rp50.000. Siswa diingatkan untuk membeli barang sesuai kebutuhan saja dan tidak berlebihan.",
+        "core_activities": [
+          "Misi Matematika (8 menit): Menghitung potongan harga sederhana (seperti 10%, 25%, dan 50%) dari barang kebutuhan sekolah dan dapur dalam harga rupiah yang realistis.",
+          "Misi Teknologi (7 menit): Menggunakan garis bilangan interaktif untuk mengurutkan potongan harga dari yang terkecil hingga terbesar, termasuk mengenali persen di atas 100.",
+          "Misi Rekayasa (10 menit): Merancang draf daftar belanja hemat di dalam aplikasi dengan memilih barang kebutuhan pokok agar total harga setelah diskon tidak melebihi anggaran."
+        ],
+        "closing": "Siswa memilih ekspresi maskot untuk menggambarkan perasaan mereka saat berhasil mengatur anggaran dan menuliskan satu alasan mengapa mereka memilih barang tersebut."
+      },
+      {
+        "meeting": 3,
+        "title": "Uji Toko dan Buat Poster",
+        "opening": "Saatnya menguji rancangan daftar belanja di simulasi Toko Diskon Si Cermat dan bersiap membuat karya nyata. Siswa menyiapkan alat gambar di meja masing-masing.",
+        "core_activities": [
+          "Misi Matematika dan Rekayasa (10 menit): Menguji daftar belanja di simulasi toko diskon, menghitung total harga akhir dalam rupiah, dan memperbaiki pilihan barang jika anggaran masih kurang tepat.",
+          "Misi Panduan Seni (5 menit): Membaca petunjuk bertahap di aplikasi untuk membuat poster diskon dan daftar belanja hemat di luar aplikasi.",
+          "Misi Seni di Luar Aplikasi (25 menit): Siswa bekerja menggunakan karton dan krayon untuk menggambar daftar belanja hemat beserta tabel perbandingan pecahan, desimal, dan persen dari diskon barang tersebut."
+        ],
+        "closing": "Siswa kembali ke aplikasi untuk mencentang daftar periksa penyelesaian poster di karton dan memilih ekspresi maskot yang sesuai dengan usaha mereka hari ini."
+      },
+      {
+        "meeting": 4,
+        "title": "Pameran Belanja Hemat",
+        "opening": "Siswa meletakkan poster karton buatan mereka di meja untuk dilihat teman sekelas. Aplikasi menampilkan panduan singkat untuk saling mengamati karya teman dengan sopan.",
+        "core_activities": [
+          "Misi Berbagi dan Seni (15 menit): Siswa mempresentasikan poster karton daftar belanja hemat di depan kelas dan menjelaskan alasan perhitungan diskonnya menggunakan panduan pertanyaan di aplikasi.",
+          "Misi Matematika dan Teknologi (10 menit): Tantangan lencana akhir di aplikasi berupa kuis studi kasus belanja cermat menggunakan bantuan garis bilangan interaktif."
+        ],
+        "closing": "Siswa memilih ekspresi maskot sebagai refleksi akhir seluruh rangkaian proyek dan memilih satu pelajaran terpenting tentang berbelanja bijak menggunakan pecahan, desimal, dan persen."
+      }
+    ],
+    "pacing": "Setiap pertemuan berdurasi 70 menit yang dibagi menjadi misi-misi pendek 5 hingga 10 menit di layar HP atau tablet, diselingi diskusi teman sebangku dan kegiatan menggambar di karton agar mata siswa t",
+    "allow_replay": true,
+    "allow_skip": true
+  },
+  "assessment": {
+    "enabled": true,
+    "types": [
+      "formatif",
+      "refleksi"
+    ],
+    "methods": [
+      "kuis_gambar",
+      "ceklis_misi",
+      "refleksi_ekspresi_maskot"
+    ],
+    "feedback_style": "positif, spesifik, membangun",
+    "no_grade_shaming": true,
+    "show_score_to_student": false,
+    "teacher_view": "Ringkasan progres terlihat saat guru membuka aplikasi di perangkat yang sama"
+  },
+  "app_style": {
+    "selected": [
+      "story_quest",
+      "virtual_lab",
+      "badge_challenge"
+    ],
+    "rewards": [
+      "lencana",
+      "bintang"
+    ],
+    "difficulty": "naik bertahap dan bisa diulang",
+    "interaction_types": [
+      "ketuk",
+      "geser",
+      "seret_lepas",
+      "pilih_gambar"
+    ],
+    "session_length_minutes": 10
+  },
+  "child_friendly_design": {
+    "palette": "cerah, hangat, kontras tinggi",
+    "primary_colors": [
+      "#2ba3f5",
+      "#ffc83d",
+      "#5bcb7a"
+    ],
+    "font_size": "sangat besar",
+    "font_style": "bulat, mudah dibaca anak",
+    "mascot": {
+      "enabled": false,
+      "note": "Tanpa maskot. Gunakan narasi singkat dan tombol yang jelas."
+    },
+    "language_style": "kalimat pendek, sangat sederhana, satu ide per kalimat",
+    "language": "id",
+    "bilingual": false,
+    "text_to_speech": {
+      "enabled": true,
+      "voice_language": "id-ID",
+      "read_aloud_button_on_every_text": true
+    },
+    "sound_effects": {
+      "enabled": true,
+      "mute_button": true
+    },
+    "typography": {
+      "level": "sangat besar",
+      "min_body_px": 28,
+      "heading_px": "40 sampai 56",
+      "button_text_px": 28,
+      "rule": "Gunakan satuan yang menyesuaikan layar (clamp atau vw) agar huruf tetap besar di HP kecil. Jangan pernah memakai huruf di bawah ukuran minimum. Huruf tebal, bulat, kontras tinggi, jarak antarbaris lega."
+    },
+    "touch_design": {
+      "min_button_size_px": 56,
+      "spacing_between_buttons_px": 12,
+      "one_main_action_per_screen": true
+    },
+    "accessibility": [
+      "tombol besar",
+      "ikon jelas disertai teks",
+      "tanpa batas waktu ketat",
+      "kontras warna tinggi",
+      "tidak mengandalkan warna saja untuk makna",
+      "animasi bisa dimatikan"
+    ]
+  },
+  "visual_design": {
+    "overall_style": "Gambar 2D lucu yang digambar lewat kode p5.js: bentuk bulat dan sederhana, warna cerah rata dari palet aplikasi, garis tepi tebal berujung bulat atau tanpa garis, dan gerak ringan. Tampak seperti ilustrasi buku cerita anak yang hidup.",
+    "child_safe_style": "Lucu dan ramah: warna hangat, bentuk membulat, tidak ada tampilan yang menakutkan (hewan dan serangga digambar imut), tidak ada wajah manusia realistis.",
+    "drawing_method": {
+      "method": "p5js_procedural",
+      "format": "Setiap aset adalah satu fungsi gambar (mis. drawRainCloud) di src/assets/p5/<id> yang dipanggil dari sketsa p5 mode instance di dalam satu komponen pembungkus",
+      "must_not_use": [
+        "foto",
+        "gambar 3D",
+        "file gambar unduhan",
+        "gambar stok",
+        "hasil generator gambar AI",
+        "gambar raster sebagai ilustrasi",
+        "emoji",
+        "ikon pustaka sebagai ilustrasi",
+        "kotak kosong pengganti"
+      ]
+    },
+    "style_guide": {
+      "shapes": "rakit dari bentuk dasar: ellipse, rect dengan sudut membulat, arc, bezier, dan polygon halus",
+      "colors": "pakai primary_colors beserta turunannya; maksimal 6 warna per aset; warna rata dengan satu lapis bayangan datar",
+      "character": "mata besar dari lingkaran putih dan hitam, pipi merona, bila ada karakter",
+      "animation": "gerak ringan dengan sin() atau noise() (melayang, mengayun, berkedip); hormati prefers-reduced-motion"
+    },
+    "topic_relevance": {
+      "topic": "Hubungan pecahan, desimal, dan persen",
+      "rule": "Setiap ilustrasi harus menampilkan unsur nyata dari materi, sesuai must_depict pada asset_list. Jangan menggambar hal yang tidak berkaitan dengan materi.",
+      "verify": "Sebelum selesai, periksa tiap ilustrasi: apakah semua unsur must_depict terlihat jelas? Jika tidak, gambar ulang."
+    },
+    "icon_policy": {
+      "allowed_only_for": "tombol fungsi berupa ikon sederhana yang selalu disertai teks",
+      "rule": "Setiap konsep, objek, dan karakter diwakili aset p5.js dari asset_list, bukan ikon atau emoji."
+    },
+    "quality_bar": {
+      "scene_background": "latar sederhana berwarna lembut atau berlapis (langit, tanah), bukan foto",
+      "ui_icons": "tombol fungsi (kembali, suara, ulangi) boleh berupa ikon sederhana yang selalu disertai teks"
+    },
+    "asset_list": [
+      {
+        "id": "draw_cover_discount_shop",
+        "purpose": "Gambar sampul halaman utama aplikasi Toko Diskon Si Cermat",
+        "used_on": "Layar sampul aplikasi",
+        "must_depict": [
+          "tenda toko kelontong lokal",
+          "label diskon terbagi empat bagian",
+          "batang garis bilangan di depan toko",
+          "keranjang belanja berisi buah"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a rounded rect shop stall with striped arc awning in #2ba3f5 and #ffc83d, a basket of ellipse fruits in #5bcb7a, a hanging tag divided into four equal fraction slices, and a horizontal number line bar below. Top-left highlight, soft flat shadow, awning gently bobs up and down in idle animation.",
+        "aspect_ratio": "16:9",
+        "kind": "scene",
+        "interaction": "animate"
+      },
+      {
+        "id": "draw_bg_market_numbers",
+        "purpose": "Latar pertemuan 1 tentang rahasia angka di pasar tradisional",
+        "used_on": "Pertemuan 1: Rahasia Angka di Pasar",
+        "must_depict": [
+          "kios pasar tradisional",
+          "timbangan buah bulat",
+          "kue bundar terpotong pecahan",
+          "papan garis bilangan kayu"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: market stall background with rounded rect wooden table, a round pie divided into four arc slices in #ffc83d, a simple balance scale made of arcs and ellipses in #2ba3f5, and a long horizontal bar divided into ten segments in #5bcb7a. Top-left light highlight, gentle floating motion on the scale pans.",
+        "aspect_ratio": "16:9",
+        "kind": "background",
+        "interaction": "animate"
+      },
+      {
+        "id": "draw_bg_budget_plan",
+        "purpose": "Latar pertemuan 2 untuk merencanakan belanja bijak sesuai anggaran",
+        "used_on": "Pertemuan 2: Rencana Belanja Bijak",
+        "must_depict": [
+          "meja kayu ruang belajar",
+          "celengan berbentuk koin besar",
+          "kertas daftar belanja bergaris",
+          "dompet lipat sederhana"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a warm tabletop view with a rounded rect notebook showing horizontal bars, a chubby ellipse coin bank in #ffc83d, a folded rect wallet in #2ba3f5, and green #5bcb7a paper bills stacked neatly. Soft flat shadows, top-left white oval highlight, coin bank gently breathes in scale.",
+        "aspect_ratio": "16:9",
+        "kind": "background",
+        "interaction": "animate"
+      },
+      {
+        "id": "draw_bg_shop_poster_studio",
+        "purpose": "Latar pertemuan 3 untuk uji toko diskon dan area membuat poster",
+        "used_on": "Pertemuan 3: Uji Toko dan Buat Poster",
+        "must_depict": [
+          "rak barang toko",
+          "karton poster kosong di penyangga",
+          "kotak krayon warna-warni",
+          "label potongan harga tergantung"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: store shelves on the left made of rounded rects in #2ba3f5 with hanging price tags, and an easel on the right holding a large blank poster board with chubby cylinder crayons in #ffc83d and #5bcb7a below. Top-left highlight, hanging tags swing softly side to side.",
+        "aspect_ratio": "16:9",
+        "kind": "background",
+        "interaction": "animate"
+      },
+      {
+        "id": "draw_bg_thrift_exhibition",
+        "purpose": "Latar pertemuan 4 untuk pameran daftar belanja hemat",
+        "used_on": "Pertemuan 4: Pameran Belanja Hemat",
+        "must_depict": [
+          "papan pameran daftar belanja",
+          "bendera segitiga hiasan kelas",
+          "meja pajangan hasil karya",
+          "lencana bintang penghargaan"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: classroom exhibition board made of large rounded rects in #2ba3f5 displaying smaller chart cards, festive triangle bunting arcs across the top in #ffc83d and #5bcb7a, and a display table below. Top-left highlights, soft flat shadows, bunting flags sway gently in a slow wave.",
+        "aspect_ratio": "16:9",
+        "kind": "background",
+        "interaction": "animate"
+      },
+      {
+        "id": "draw_tech_number_line_slider",
+        "purpose": "Alat simulasi Teknologi menggeser titik pada garis bilangan untuk melihat pecahan, desimal, dan persen",
+        "used_on": "Pertemuan 1 dan Simulasi Garis Bilangan",
+        "must_depict": [
+          "batang garis bilangan sepuluh ruas",
+          "tombol geser bulat",
+          "lingkaran pecahan yang terisi sesuai posisi",
+          "kotak seratus petak persen"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a horizontal rounded rect track in #2ba3f5 split into ten tick marks, a large draggable #ffc83d circle knob on the track, paired above with a dynamic arc pie chart and a ten-by-ten mini square grid filling in #5bcb7a as the child slides the knob left or right. Top-left highlight and gentle pulse.",
+        "aspect_ratio": "16:9",
+        "kind": "object",
+        "interaction": "slider"
+      },
+      {
+        "id": "draw_eng_budget_basket",
+        "purpose": "Objek Rekayasa untuk merancang daftar belanja hemat sesuai batas anggaran",
+        "used_on": "Pertemuan 2 dan Simulasi Anggaran Belanja",
+        "must_depict": [
+          "keranjang belanja anyaman",
+          "bar pengukur batas anggaran",
+          "buku tulis dan pensil sebagai barang kebutuhan",
+          "label diskon pecahan pada barang"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a trapezoid rounded basket in #2ba3f5, draggable school supplies like a notebook rect and pencil shapes with small half-filled circle discount tags, and a vertical meter bar on the side that fills with #5bcb7a and turns #ffc83d near full budget when items are dragged into the basket. Soft bounce on drop.",
+        "aspect_ratio": "4:3",
+        "kind": "object",
+        "interaction": "drag"
+      },
+      {
+        "id": "draw_art_poster_kit",
+        "purpose": "Objek Seni berupa panduan alat karton dan krayon untuk membuat poster diskon",
+        "used_on": "Pertemuan 3: Tugas Proyek Poster Diskon",
+        "must_depict": [
+          "lembar karton lebar",
+          "tiga batang krayon gemuk",
+          "gunting ujung bulat",
+          "bentuk dekorasi potongan lingkaran dan bintang"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a large tilted rounded rect poster sheet surrounded by three chubby cylinder crayons in #2ba3f5, #ffc83d, and #5bcb7a, safe round-tip scissors made of ellipses, and cut-out fraction circle shapes. Top-left glossy highlight, crayons wiggle gently when tapped by the student.",
+        "aspect_ratio": "4:3",
+        "kind": "object",
+        "interaction": "tap"
+      },
+      {
+        "id": "draw_math_discount_slicer",
+        "purpose": "Simulasi Matematika untuk membandingkan pecahan, desimal, persen, dan memotong harga diskon",
+        "used_on": "Pertemuan 1, 2, dan 3 pada Simulasi Toko Diskon",
+        "must_depict": [
+          "label harga utuh berbentuk batang",
+          "pemotong diskon menjadi empat atau sepuluh bagian",
+          "bagian potongan harga yang berwarna beda",
+          "kotak barang kebutuhan sehari-hari"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a boxed daily item like a rice bag or book in #2ba3f5 alongside a thick horizontal price bar in #5bcb7a that slices into four or ten equal rounded rect blocks when tapped, highlighting the discounted portion in bright #ffc83d. Top-left highlight, sliced blocks slide apart smoothly on tap.",
+        "aspect_ratio": "4:3",
+        "kind": "object",
+        "interaction": "tap"
+      },
+      {
+        "id": "draw_sim_shop_shelf_items",
+        "purpose": "Rak barang interaktif di Toko Diskon tempat anak memilih barang untuk dihitung harga akhirnya",
+        "used_on": "Simulasi Toko Diskon Si Cermat",
+        "must_depict": [
+          "tas sekolah",
+          "botol minum",
+          "kotak bekal",
+          "label lingkaran diskon seperempat dan setengah"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: two wooden shelf bars holding a rounded rect backpack in #2ba3f5, a cylinder water bottle in #5bcb7a, and a lunchbox in #ffc83d, each attached to a small circle pie tag showing quarter or half slices for discount value. Items scale up slightly and bob when tapped.",
+        "aspect_ratio": "4:3",
+        "kind": "object",
+        "interaction": "tap"
+      },
+      {
+        "id": "draw_badge_number_explorer",
+        "purpose": "Lencana hadiah setelah berhasil mengubah dan membandingkan pecahan, desimal, dan persen",
+        "used_on": "Layar pencapaian misi dan kuis",
+        "must_depict": [
+          "medali lingkaran bergerigi",
+          "lingkaran pecahan tiga perempat",
+          "batang desimal sepuluh bagian",
+          "pita medali kembar"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a scalloped circle medal in #ffc83d with twin ribbon tails in #2ba3f5, featuring a center emblem of a three-quarter arc pie in #5bcb7a next to a miniature ten-segment bar. Top-left white shine arc, gentle slow rotation and sparkle ellipses around the rim.",
+        "aspect_ratio": "1:1",
+        "kind": "badge",
+        "interaction": "animate"
+      },
+      {
+        "id": "draw_badge_wise_shopper",
+        "purpose": "Lencana hadiah setelah berhasil menghitung diskon dengan tepat di toko",
+        "used_on": "Layar pencapaian misi dan kuis",
+        "must_depict": [
+          "medali perisai bulat",
+          "keranjang belanja kecil",
+          "label diskon terpotong",
+          "bintang sudut medali"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a rounded shield badge in #5bcb7a framed with #ffc83d border, displaying a cute flat shopping basket and a tilted discount tag split in two colors (#2ba3f5 and white) at the center. Top-left highlight, badge gently floats up and down with twinkling star shapes.",
+        "aspect_ratio": "1:1",
+        "kind": "badge",
+        "interaction": "animate"
+      },
+      {
+        "id": "draw_badge_budget_champion",
+        "purpose": "Lencana hadiah utama setelah menyelesaikan proyek daftar belanja hemat dan poster diskon",
+        "used_on": "Pertemuan 4 dan Layar Tamat Misi",
+        "must_depict": [
+          "piala bulat berpegangan",
+          "kertas daftar belanja tercentang",
+          "koin emas hemat",
+          "mahkota daun di atas piala"
+        ],
+        "drawing_brief": "Cute flat 2D p5.js sketch drawn with simple shapes: a chubby golden cup trophy in #ffc83d on a #2ba3f5 base, decorated with a miniature checklist card with #5bcb7a checkmarks and stacked round coins beside it. Top-left glossy highlight, soft shadow underneath, trophy gently pulses with floating confetti circles.",
+        "aspect_ratio": "1:1",
+        "kind": "badge",
+        "interaction": "animate"
+      }
+    ],
+    "performance_note": "Semua gambar dibuat di dalam kode tanpa berkas gambar dari internet, sehingga ringan di HP kelas menengah dan cocok untuk alat pembuat aplikasi gratis.",
+    "p5_requirements": {
+      "library": "Pasang paket npm \"p5\" dengan versi yang dikunci di package.json. Pakai MODE INSTANCE (new p5(sketch, elemen)) agar aman di React; jangan mode global dan jangan memuat p5 dari CDN tanpa nomor versi.",
+      "asset_coverage": "Setiap id di asset_list wajib punya fungsi gambar dan dipakai di layar yang disebut used_on. Tidak boleh ada aset yang dilewati.",
+      "structure": "Buat satu komponen pembungkus (mis. P5Canvas) yang menerima fungsi sketch, membuat instans p5 saat dipasang, dan memanggil remove() saat dilepas.",
+      "responsive": "Ukuran kanvas mengikuti wadah (ResizeObserver); pixelDensity maksimal 2; gambar memakai koordinat relatif (0 sampai 1) agar tajam di semua ukuran; kanvas tidak boleh membuat halaman bisa di-scroll.",
+      "interaction": "Sentuh dan seret lewat touchStarted/touchMoved atau mousePressed/mouseDragged; area sentuh minimal 72 px dengan umpan balik memantul; cegah scroll saat menyeret (touch-action: none pada kanvas).",
+      "performance": "frameRate 30; pakai noLoop() dan redraw() untuk aset yang diam; hentikan loop saat layar tidak terlihat; tanpa memuat font atau gambar eksternal (pakai font sistem); jangan memakai p5.sound, suara memakai Web Audio atau SpeechSynthesis.",
+      "fallback": "Bila kanvas gagal dibuat, tampilkan gambar SVG atau CSS sederhana dari konsep utama dan pesan ramah; aplikasi tetap bisa dilanjutkan.",
+      "accessibility": "Setiap kanvas punya aria-label yang menjelaskan isinya; ada tombol sebagai pengganti seret; gerak berhenti bila prefers-reduced-motion; informasi penting juga tersedia sebagai teks dan suara.",
+      "verification": "Buat halaman /galeri-aset (tidak ditautkan dari menu) yang menampilkan semua aset berdampingan. Periksa tiap aset: semua must_depict terlihat jelas, tidak terpotong, ukuran seimbang. Perbaiki yang kurang sebelum selesai."
+    },
+    "cuteness": {
+      "level": "kawaii",
+      "recipe": [
+        "Proporsi gemuk dan bulat: kepala besar (sekitar 60 persen tinggi karakter), badan pendek, ujung membulat, tanpa sudut tajam.",
+        "Garis tepi tebal (sekitar 4,5 persen ukuran objek), berujung bulat, berwarna lebih gelap dari isinya (bukan hitam pekat).",
+        "Setiap bentuk besar punya satu sorot cahaya putih transparan di kiri atas dan bayangan elips lembut di bawah objek.",
+        "Semua makhluk dan benda yang terasa hidup (matahari, awan, tetes air, tanaman, hewan, makanan) diberi wajah imut dengan cute.face: mata besar berkilau, pipi merona, mulut kecil. Alat, diagram, dan latar tidak diberi wajah. Tambahkan kilau (cute.sparkle) pada objek utama.",
+        "Warna: tiap warna utama punya tiga turunan (dasar, gelap 35 persen untuk garis tepi, terang 40 persen untuk sorot). Latar berwarna pastel lembut. Maksimal 6 warna per aset.",
+        "Komposisi: objek utama 55 sampai 70 persen kanvas dan di tengah, margin 8 persen, maksimal 5 sampai 7 elemen, latar dua lapis (langit dan bukit atau tanah). Hindari detail kecil.",
+        "Gerak idle yang hidup: napas pelan (cute.breathe), melayang (cute.float), berkedip tiap 4 detik, kilau berkedip. Saat disentuh: memantul 0,4 detik (cute.squash)."
+      ],
+      "self_check": [
+        "Uji menyipit: bentuk utama tetap terbaca dan tampak seperti stiker atau buku cerita anak, bukan diagram.",
+        "Setiap makhluk punya wajah dan pipi sesuai tingkat imut; tidak ada garis hitam pekat atau sudut tajam.",
+        "Semua must_depict terlihat jelas dan objek utama langsung terbaca.",
+        "Bandingkan semua aset di /galeri-aset; gambar ulang yang kurang imut atau berbeda gaya."
+      ]
+    },
+    "cute_kit": {
+      "file": "src/lib/cuteKit.js",
+      "instruction": "Salin kode ini apa adanya ke berkas tersebut sebelum menggambar aset apa pun, lalu gambar SEMUA aset dengan pustaka ini (cute.body, cute.face, cute.highlight, cute.shadow, cute.sparkle, dan seterusnya). Boleh menambah fungsi baru dengan gaya yang sama, jangan mengubah gayanya.",
+      "reference_code": [
+        "// cuteKit.js - pustaka gambar imut untuk p5.js (mode instance). Semua ukuran relatif terhadap s (ukuran objek).",
+        "export const cute = {",
+        "  shade(p, c, f) { return p.lerpColor(p.color(c), p.color(0), f); },",
+        "  tint(p, c, f) { return p.lerpColor(p.color(c), p.color(255), f); },",
+        "  // bentuk berwarna dengan garis tepi tebal berujung bulat yang lebih gelap dari isinya",
+        "  body(p, c, s, draw) {",
+        "    p.push();",
+        "    p.strokeWeight(s * 0.045); p.strokeJoin(p.ROUND); p.strokeCap(p.ROUND);",
+        "    p.stroke(cute.shade(p, c, 0.35)); p.fill(c);",
+        "    draw();",
+        "    p.pop();",
+        "  },",
+        "  highlight(p, x, y, w, h) { p.push(); p.noStroke(); p.fill(255, 255, 255, 150); p.ellipse(x, y, w, h); p.pop(); },",
+        "  shadow(p, x, y, w) { p.push(); p.noStroke(); p.fill(0, 0, 0, 28); p.ellipse(x, y, w, w * 0.22); p.pop(); },",
+        "  cheeks(p, x, y, gap, r) {",
+        "    p.push(); p.noStroke(); p.fill(255, 120, 150, 130);",
+        "    p.ellipse(x - gap, y, r, r * 0.7); p.ellipse(x + gap, y, r, r * 0.7);",
+        "    p.pop();",
+        "  },",
+        "  // wajah imut: mata besar berkilau, pipi merona, mulut kecil. mood: happy, excited, curious, sleepy",
+        "  face(p, x, y, s, mood, t) {",
+        "    mood = mood || 'happy'; t = t || 0;",
+        "    const gap = s * 0.2, er = s * 0.14;",
+        "    const blink = (t % 4) > 3.85 ? 0.15 : 1;",
+        "    p.push(); p.noStroke();",
+        "    [-1, 1].forEach((d) => {",
+        "      p.fill(30, 30, 50); p.ellipse(x + d * gap, y, er, er * 1.25 * blink);",
+        "      p.fill(255); p.ellipse(x + d * gap - er * 0.18, y - er * 0.25, er * 0.4);",
+        "    });",
+        "    p.pop();",
+        "    cute.cheeks(p, x, y + s * 0.1, gap * 1.55, s * 0.13);",
+        "    p.push(); p.stroke(30, 30, 50); p.strokeWeight(s * 0.03); p.strokeCap(p.ROUND);",
+        "    if (mood === 'excited') { p.fill(210, 70, 90); p.arc(x, y + s * 0.1, s * 0.2, s * 0.2, 0, p.PI, p.CHORD); }",
+        "    else if (mood === 'curious') { p.noFill(); p.ellipse(x, y + s * 0.14, s * 0.07); }",
+        "    else if (mood === 'sleepy') { p.noFill(); p.line(x - s * 0.06, y + s * 0.14, x + s * 0.06, y + s * 0.14); }",
+        "    else { p.noFill(); p.arc(x, y + s * 0.08, s * 0.16, s * 0.12, 0.15, p.PI - 0.15); }",
+        "    p.pop();",
+        "  },",
+        "  // gerak idle: napas pelan (skala) dan melayang (naik turun)",
+        "  breathe(t, amp, speed) { return 1 + Math.sin(t * (speed || 2)) * (amp || 0.03); },",
+        "  float(t, amp, speed) { return Math.sin(t * (speed || 1.5)) * (amp || 6); },",
+        "  // pantulan saat disentuh: k dari 0 ke 1, mengembang lalu kembali",
+        "  squash(k) { const e = Math.sin(Math.min(Math.max(k, 0), 1) * Math.PI); return { sx: 1 + e * 0.18, sy: 1 - e * 0.14 }; },",
+        "  sparkle(p, x, y, r, t) {",
+        "    const k = 0.6 + 0.4 * Math.sin((t || 0) * 4 + x);",
+        "    p.push(); p.noStroke(); p.fill(255, 245, 160, 230); p.translate(x, y); p.scale(k);",
+        "    p.beginShape();",
+        "    for (let i = 0; i < 8; i++) { const a = (i * Math.PI) / 4, rr = i % 2 ? r * 0.28 : r; p.vertex(Math.cos(a) * rr, Math.sin(a) * rr); }",
+        "    p.endShape(p.CLOSE);",
+        "    p.pop();",
+        "  },",
+        "  // awan bulat gemuk sebagai contoh bentuk dasar",
+        "  cloud(p, x, y, s, c) {",
+        "    cute.body(p, c, s, () => {",
+        "      p.ellipse(x - s * 0.25, y + s * 0.05, s * 0.5, s * 0.4);",
+        "      p.ellipse(x + s * 0.25, y + s * 0.05, s * 0.5, s * 0.4);",
+        "      p.ellipse(x, y - s * 0.1, s * 0.6, s * 0.5);",
+        "      p.rect(x - s * 0.25, y, s * 0.5, s * 0.25, s * 0.12);",
+        "    });",
+        "    cute.highlight(p, x - s * 0.15, y - s * 0.22, s * 0.2, s * 0.1);",
+        "  }",
+        "};"
+      ]
+    }
+  },
+  "ai_config": {
+    "enabled": false,
+    "note": "Tanpa AI: aplikasi statis tanpa server."
+  },
+  "data_policy": {
+    "database": false,
+    "personal_data_collection": false,
+    "ask_student_name": "tidak menanyakan nama",
+    "local_storage_progress": true,
+    "teacher_can_disable_local_storage": true,
+    "reset_progress_button": true,
+    "analytics_or_tracking": false,
+    "third_party_scripts": false,
+    "privacy_note": "Tidak ada data anak yang dikirim ke server mana pun."
+  },
+  "tech_requirements": {
+    "type": "web app",
+    "responsive": [
+      "HP",
+      "tablet",
+      "laptop"
+    ],
+    "orientation": "portrait dan landscape",
+    "browser_support": [
+      "Chrome",
+      "Safari",
+      "Edge",
+      "Firefox"
+    ],
+    "offline_support": "Seluruh aplikasi jalan tanpa internet setelah dimuat",
+    "performance": "Ringan, mudah dimuat di HP kelas menengah dan jaringan lambat",
+    "deploy_target": "bebas (dipilih guru)",
+    "no_external_ads": true,
+    "backend": {
+      "allowed": "Tidak ada backend",
+      "forbidden": [
+        "fungsi server",
+        "database",
+        "akun",
+        "login"
+      ]
+    }
+  },
+  "quality_criteria": {
+    "acceptance_checklist": [
+      "Anak SD bisa memakai tanpa dibantu setelah satu kali contoh",
+      "Setiap layar punya satu tujuan jelas",
+      "Semua teks bisa dibacakan",
+      "Tidak ada konten di luar tujuan pembelajaran",
+      "Semua ilustrasi adalah SVG buatan sendiri, lucu, dan konsisten gayanya",
+      "Setiap ilustrasi menampilkan unsur nyata dari materi (must_depict)",
+      "Tidak ada foto, gambar 3D, gambar stok, generator gambar AI, emoji, atau ikon yang dipakai sebagai ilustrasi"
+    ],
+    "pedagogy_check": "Pastikan setiap misi terhubung ke tujuan pembelajaran dan komponen STEAM yang aktif"
+  },
+  "build_instructions": "Buat aplikasi web statis ramah anak SD berdasarkan seluruh spesifikasi JSON ini, tanpa server, tanpa database, tanpa akun, dan tanpa AI. Patuhi critical_rules di bagian awal. Ikuti tema proyek, komponen STEAM aktif (lewati yang berstatus \"skip\"), alur belajar, gaya aplikasi, dan desain visual. Semua teks untuk siswa memakai Bahasa Indonesia sederhana. Gambar SEMUA aset di asset_list sendiri lewat kode dengan p5.js mode instance dari bentuk dasar (ikuti p5_requirements); jangan memakai foto, gambar 3D, file gambar unduhan, gambar stok, generator gambar AI, atau emoji, dan jangan memuat gambar dari internet. Buat halaman tersembunyi /galeri-aset yang menampilkan semua aset untuk diperiksa. Bangun SELURUH aplikasi dalam satu pekerjaan sampai semua misi di semua pertemuan benar-benar berfungsi. Jangan berhenti setelah kerangka, jangan menunggu konfirmasi saya, dan jangan membuat layar kosong, placeholder, atau tulisan \"segera hadir\". Tampilkan isi learning_flow.meetings[].missions apa adanya (dialog, langkah, soal, umpan balik, petunjuk); jika sebuah misi belum berisi, tulis sendiri sesuai content_scope. Setelah selesai, beri tahu saya ilustrasi mana yang menurutmu belum menggambarkan materi dengan jelas. Jika informasi kurang, pilih opsi paling sederhana dan aman untuk anak, lalu catat asumsinya di akhir. Setiap layar harus muat satu halaman tanpa scroll dengan huruf besar sesuai typography dan layout di app_blueprint. Ikuti prompt_framework dan app_blueprint untuk peran, bentuk aplikasi, dan alur layar."
+}
